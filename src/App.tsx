@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header } from './components/Header/Header'
+import { Content } from './components/Top/Content'
 import { GlobalStyle } from './styles/global'
 
 const App = (): JSX.Element => {
@@ -8,6 +9,7 @@ const App = (): JSX.Element => {
       <GlobalStyle />
       <div>
         <Header />
+        <Content />
       </div>
     </>
   )
