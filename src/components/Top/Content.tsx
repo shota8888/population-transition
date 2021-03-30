@@ -4,6 +4,17 @@ import { Prefectures } from '../../types/Prefectures'
 import { PopChartData, PopulationChart } from '../common/Chart/PopulationChart'
 import PrefecturesList from './PrefecturesList'
 
+const ListContainer = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: 2em auto;
+  padding: 1em 0.5em;
+  border: 1px solid rgba(0 0 0 / 10%);
+  box-shadow: 0px 8px 16px -2px rgba(10 10 10 / 10%),
+    0px -15px 25px 0px rgba(10 10 10 / 2%);
+`
+
 const ChartContainer = styled.div`
   width: 100%;
   height: 500px;
@@ -27,13 +38,13 @@ export const Content = ({ items }: Props): JSX.Element => {
 
   return (
     <div>
-      <div>
+      <ListContainer>
         <PrefecturesList
           items={items}
           selected={selected}
           onChangeSelection={handleChangeSelection}
         />
-      </div>
+      </ListContainer>
       <ChartContainer>
         <PopulationChart data={data} />
       </ChartContainer>

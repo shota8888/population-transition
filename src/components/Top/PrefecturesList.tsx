@@ -1,6 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Prefectures } from '../../types/Prefectures'
 import { CheckBox } from '../common/Forms/CheckBox'
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
+
+const Block = styled.div`
+  width: 101px;
+  padding-right: 0.9em;
+`
 
 type Props = {
   items: Prefectures['result']
@@ -17,18 +29,18 @@ const PrefecturesList = ({
   onChangeSelection,
 }: Props): JSX.Element => {
   return (
-    <div>
+    <Container>
       {items.length &&
         items.map((item, i) => (
-          <div key={item.prefName}>
+          <Block key={item.prefName}>
             <CheckBox
               item={{ id: item.prefCode.toString(), name: item.prefName }}
               checked={selected[i]}
               onChange={(e) => onChangeSelection(e, i)}
             />
-          </div>
+          </Block>
         ))}
-    </div>
+    </Container>
   )
 }
 
