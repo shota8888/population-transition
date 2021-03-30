@@ -1,5 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { Progress } from './components/common/FeedBack/Progress'
 import { Header } from './components/Header/Header'
 import { Content } from './components/Top/Content'
 import { useFetch } from './hooks/useFetch'
@@ -15,12 +16,16 @@ const App = (): JSX.Element => {
   const url = '/api/v1/prefectures'
   const { state } = useFetch<Prefectures>(initialData, url)
 
+  let content: JSX.Element = <></>
+  if (state.isLoading) content = <Progress />
+  else content = <Content items={state.data.result} />
+
   return (
     <ThemeProvider theme={styledTheme}>
       <GlobalStyle />
       <div>
         <Header />
-        <Content items={state.data.result} />
+        {content}
       </div>
     </ThemeProvider>
   )
