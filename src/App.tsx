@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './styles/global'
+import { styledTheme } from './styles/theme'
+import { Prefectures } from './types/Prefectures'
+import { useFetch } from './hooks/useFetch'
+import { Progress } from './components/common/FeedBack/Progress'
+import { Header } from './components/common/Global/Header'
+import { Content } from './components/Top/Content'
 
-function App() {
+const App = (): JSX.Element => {
+  const initialData = {
+    message: null,
+    result: [],
+  }
+  const url = '/api/v1/prefectures'
+  const { state } = useFetch<Prefectures>(initialData, url)
+
+  let content: JSX.Element = <></>
+  if (state.isLoading) content = <Progress />
+  else content = <Content items={state.data.result} />
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={styledTheme}>
+      <GlobalStyle />
+      <div>
+        <Header />
+        {content}
+      </div>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App
