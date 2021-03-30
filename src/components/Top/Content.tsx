@@ -10,7 +10,7 @@ const ListContainer = styled.div`
   justify-content: center;
   margin: 2em auto;
   padding: 1em 0.5em;
-  border: 1px solid rgba(0 0 0 / 10%);
+  border: 1px solid ${(props) => props.theme.palette.border.light};
   box-shadow: 0px 8px 16px -2px rgba(10 10 10 / 10%),
     0px -15px 25px 0px rgba(10 10 10 / 2%);
 `
