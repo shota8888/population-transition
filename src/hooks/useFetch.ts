@@ -3,12 +3,12 @@ import {
   fetchFulfilled,
   fetchPending,
   fetchRejected,
-} from '../Actions/dataFetch/actions'
+} from '../actions/dataFetch/actions'
 import {
   createDataFetchReducer,
   initialState,
-} from '../Actions/dataFetch/reducers'
-import { InitialState } from '../Actions/dataFetch/types'
+} from '../actions/dataFetch/reducers'
+import { InitialState } from '../actions/dataFetch/types'
 import { resasAxios } from '../api/resasApi'
 
 type Cache<T> = {
