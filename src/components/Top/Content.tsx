@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useFetch } from '../../hooks/useFetch'
 import media from '../../styles/mediaqueries'
 import { Population } from '../../types/Population'
 import { Prefectures } from '../../types/Prefectures'
+import { useFetch } from '../../hooks/useFetch'
 import { SimpleButton } from '../common/Buttons/SimpleButton'
-import { PopChartData, PopulationChart } from '../common/Chart/PopulationChart'
 import { BottomModal } from '../common/Modal/BottomModal'
+import { PopChartData, PopulationChart } from './PopulationChart'
 import PrefecturesList from './PrefecturesList'
 
 const ButtonBlock = styled.div`
