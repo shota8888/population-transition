@@ -1,9 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useFetch } from '../../hooks/useFetch'
+import media from '../../styles/mediaqueries'
 import { Population } from '../../types/Population'
 import { Prefectures } from '../../types/Prefectures'
+import { SimpleButton } from '../common/Buttons/SimpleButton'
 import { PopChartData, PopulationChart } from '../common/Chart/PopulationChart'
+import { BottomModal } from '../common/Modal/BottomModal'
 import PrefecturesList from './PrefecturesList'
 
 const MainContainer = styled.div`
@@ -42,11 +45,10 @@ export const Content = ({ items }: Props): JSX.Element => {
 
   const { state, fetchData } = useFetch<Population>(initialData, url)
 
-  const [selected, setSelected] = useState<boolean[]>(() =>
-    items.map(() => false)
-  )
+  const [selected, setSelected] = useState<boolean[]>(Array(47).fill(false))
   const [targetPref, setTargetPref] = useState('')
   const [populationData, setPopulationData] = useState<PopChartData>([])
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleChangeSelection = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -62,6 +64,14 @@ export const Content = ({ items }: Props): JSX.Element => {
     },
     [fetchData, populationData]
   )
+
+  const handleOpenModal = () => {
+    setIsOpen(true)
+  }
+
+  const handleCloseModal = useCallback(() => {
+    setIsOpen(false)
+  }, [])
 
   useEffect(() => {
     if (state.data.result.data.length) {
@@ -83,17 +93,33 @@ export const Content = ({ items }: Props): JSX.Element => {
   }, [state])
 
   return (
-    <MainContainer>
-      <ListContainer>
-        <PrefecturesList
-          items={items}
-          selected={selected}
-          onChangeSelection={handleChangeSelection}
-        />
-      </ListContainer>
-      <ChartContainer>
-        <PopulationChart data={populationData} />
-      </ChartContainer>
-    </MainContainer>
+    <>
+      <div>
+        <div>
+          <SimpleButton label={'都道府県を選択'} onClick={handleOpenModal} />
+        </div>
+        <BottomModal isOpen={isOpen} onCloseModal={handleCloseModal}>
+          <div>
+            <PrefecturesList
+              items={items}
+              selected={selected}
+              onChangeSelection={handleChangeSelection}
+            />
+          </div>
+        </BottomModal>
+      </div>
+      <MainContainer>
+        <ListContainer>
+          <PrefecturesList
+            items={items}
+            selected={selected}
+            onChangeSelection={handleChangeSelection}
+          />
+        </ListContainer>
+        <ChartContainer>
+          <PopulationChart data={populationData} />
+        </ChartContainer>
+      </MainContainer>
+    </>
   )
 }
