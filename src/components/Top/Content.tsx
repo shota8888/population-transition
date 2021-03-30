@@ -6,6 +6,10 @@ import { Prefectures } from '../../types/Prefectures'
 import { PopChartData, PopulationChart } from '../common/Chart/PopulationChart'
 import PrefecturesList from './PrefecturesList'
 
+const MainContainer = styled.div`
+  padding: 1em;
+`
+
 const ListContainer = styled.div`
   width: 80%;
   display: flex;
@@ -21,8 +25,6 @@ const ChartContainer = styled.div`
   width: 100%;
   height: 500px;
 `
-
-const data: PopChartData = []
 
 type Props = {
   items: Prefectures['result']
@@ -81,7 +83,7 @@ export const Content = ({ items }: Props): JSX.Element => {
   }, [state])
 
   return (
-    <div>
+    <MainContainer>
       <ListContainer>
         <PrefecturesList
           items={items}
@@ -92,6 +94,6 @@ export const Content = ({ items }: Props): JSX.Element => {
       <ChartContainer>
         <PopulationChart data={populationData} />
       </ChartContainer>
-    </div>
+    </MainContainer>
   )
 }

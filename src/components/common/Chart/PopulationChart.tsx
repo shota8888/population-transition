@@ -38,15 +38,15 @@ export const PopulationChart = ({ data }: Props): JSX.Element => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" />
-        <YAxis />
+        <YAxis width={90} />
         <Tooltip />
         <Legend />
-        {prefNames.map((name) => (
+        {prefNames.map((name, i) => (
           <Line
             key={name}
             type="monotone"
             dataKey={name}
-            stroke="#8884d8"
+            stroke={`hsl(${i * (360 / prefNames.length)}, 80%, 30%)`}
             activeDot={{ r: 8 }}
           />
         ))}
