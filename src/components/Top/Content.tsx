@@ -20,7 +20,7 @@ const ButtonBlock = styled.div`
 
 const ModalContainer = styled.div`
   height: 95%;
-  padding-top: 1.5em;
+  padding: 1.5em 0 0 2em;
   overflow: auto;
 `
 
