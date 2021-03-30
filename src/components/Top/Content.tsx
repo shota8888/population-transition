@@ -9,6 +9,21 @@ import { PopChartData, PopulationChart } from '../common/Chart/PopulationChart'
 import { BottomModal } from '../common/Modal/BottomModal'
 import PrefecturesList from './PrefecturesList'
 
+const ButtonBlock = styled.div`
+  display: none;
+  text-align: center;
+  padding: 1.25em 0;
+  ${media.desktop`
+    display: block;
+  `}
+`
+
+const ModalContainer = styled.div`
+  height: 95%;
+  padding-top: 1.5em;
+  overflow: auto;
+`
+
 const MainContainer = styled.div`
   padding: 1em;
 `
@@ -22,11 +37,14 @@ const ListContainer = styled.div`
   border: 1px solid ${(props) => props.theme.palette.border.light};
   box-shadow: 0px 8px 16px -2px rgba(10 10 10 / 10%),
     0px -15px 25px 0px rgba(10 10 10 / 2%);
+  ${media.desktop`
+    display: none;
+  `}
 `
 
 const ChartContainer = styled.div`
   width: 100%;
-  height: 500px;
+  height: 31.25em;
 `
 
 type Props = {
@@ -95,17 +113,17 @@ export const Content = ({ items }: Props): JSX.Element => {
   return (
     <>
       <div>
-        <div>
+        <ButtonBlock>
           <SimpleButton label={'都道府県を選択'} onClick={handleOpenModal} />
-        </div>
+        </ButtonBlock>
         <BottomModal isOpen={isOpen} onCloseModal={handleCloseModal}>
-          <div>
+          <ModalContainer>
             <PrefecturesList
               items={items}
               selected={selected}
               onChangeSelection={handleChangeSelection}
             />
-          </div>
+          </ModalContainer>
         </BottomModal>
       </div>
       <MainContainer>

@@ -9,6 +9,13 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts'
+import styled from 'styled-components'
+
+const StyledLineChart = styled(LineChart)`
+  &.recharts-wrapper {
+    z-index: -1;
+  }
+`
 
 export type PopChartData = {
   year: number
@@ -26,7 +33,7 @@ export const PopulationChart = ({ data }: Props): JSX.Element => {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart
+      <StyledLineChart
         height={300}
         data={data}
         margin={{
@@ -50,7 +57,7 @@ export const PopulationChart = ({ data }: Props): JSX.Element => {
             activeDot={{ r: 8 }}
           />
         ))}
-      </LineChart>
+      </StyledLineChart>
     </ResponsiveContainer>
   )
 }
