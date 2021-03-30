@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import media from './mediaqueries'
 
 export const GlobalStyle = createGlobalStyle`
 /* reset */
@@ -48,5 +49,12 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+/* custom */
+body {
+  ${media.tablet`
+    font-size: 14px;
+  `}
 }
 `

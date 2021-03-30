@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const Label = styled.label`
   display: block;
   position: relative;
-  padding-left: 30px;
-  margin-bottom: 15px;
+  padding-left: 1.8em;
+  margin-bottom: 1em;
   cursor: pointer;
 `
 
@@ -18,10 +18,10 @@ const Input = styled.input`
 
 const Indicator = styled.div`
   position: absolute;
-  top: -2px;
+  top: -0.125em;
   left: 0;
-  height: 20px;
-  width: 20px;
+  height: 1.25em;
+  width: 1.25em;
   border: 1px solid ${(props) => props.theme.palette.border.main};
 
   &::after {
@@ -32,10 +32,10 @@ const Indicator = styled.div`
 
   ${Input}:checked + &::after {
     display: block;
-    left: 8px;
-    top: 4px;
-    width: 3px;
-    height: 8px;
+    left: 0.5em;
+    top: 0.25em;
+    width: 0.18em;
+    height: 0.5em;
     border: solid ${(props) => props.theme.palette.primary};
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
